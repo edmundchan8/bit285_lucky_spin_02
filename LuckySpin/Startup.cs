@@ -22,6 +22,15 @@ namespace LuckySpin
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             //TODO: Include the UseRouting and UseEndpoints Middleware to map the Controller Route (see slides)
+            app.UseRouting();
+            app.UseEndpoints( endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action}/{id?}",
+                    defaults: new { controller="Spinner", action="Index" } //luck:int?
+                    );
+            });
         }
     }
 }
